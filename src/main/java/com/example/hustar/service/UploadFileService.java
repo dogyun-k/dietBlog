@@ -41,7 +41,7 @@ public class UploadFileService {
         return file;
     }
 
-    private String createStoreFileName(String originalFileName) {
+    public String createStoreFileName(String originalFileName) {
         String ext = extractExt(originalFileName);
         String uuid = UUID.randomUUID().toString();
 

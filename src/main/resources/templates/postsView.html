@@ -12,11 +12,11 @@
     <table th:align="center">
         <th>번호</th>
         <th>제목</th>
-        <th>작성자</th>
+        <th>칼로리</th>
         <tr th:each="post : ${posts}">
             <td th:text="${post.id}"></td>
             <td><a th:href="@{/posts/postinfo(id=${post.id})}" th:text="${post.title}"></a></td>
-<!--            <td th:text="${post.user.id}"></td>-->
+            <td th:text="${post.calorieInfo}"></td>
         </tr>
     </table>
 

@@ -12,7 +12,8 @@
     제목 : <span th:text="${post.title}"></span><br><br>
     내용 : <span th:text="${post.content}"></span><br><br>
     사진 : <span th:text="${post.uploadFile.getStoreFileName()}"></span><br><br>
-    사진 : <img th:src="|/images/${post.uploadFile.getStoreFileName()}|" width="300" height="300"><br><br>
+    사진 : <img th:src="|/posts/image/${post.uploadFile.getStoreFileName()}|" width="300" height="300"><br><br>
+<!--    해당 URL로 GET 요청을 하는 것-->
 <!--    작성자 : <span th:text="${post.user.id}"></span><br>-->
 
     <a th:href="@{/posts/updatepost(id=${post.id})}">수정</a>

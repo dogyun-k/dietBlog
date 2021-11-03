@@ -19,6 +19,8 @@ public class Post {
 
     private String content;
 
+    private String calorieInfo;
+
     @OneToOne
     @JoinColumn(name = "file_id")
     private UploadFile uploadFile;
@@ -26,9 +28,10 @@ public class Post {
     public Post() {
     }
 
-    public Post(String title, String content, UploadFile uploadFile) {
+    public Post(String title, String content, String calorieInfo, UploadFile uploadFile) {
         this.title = title;
         this.content = content;
+        this.calorieInfo = calorieInfo;
         this.uploadFile = uploadFile;
     }
 
