@@ -1,0 +1,42 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/knuDietBlog?serverTimezone=UTC&characterEncoding=UTF-8
+    username: dogyun
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    generate-ddl: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        format_sql: true
+
+  thymeleaf:
+    cache: false
+
+  servlet:
+    multipart:
+      enabled: true
+      location: C:\\Temp\\BlogImages
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+file:
+#  dir: C:/Users/kdk12/Desktop/file/
+#  dir: C:/Users/kdk12/Desktop/Source/resources/static/image
+  dir: C:/Users/kdk12/Desktop/Source/hustar/src/main/resources/static/image/
+
+# restTemplate:
+#     factory:
+#         readTimeout: 10000
+#         connectTimeout: 10000
+#     httpClient:
+#         maxConnTotal: 100
+#         maxConnPerRoute: 5
+

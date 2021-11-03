@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 쓰기</title>
+</head>
+<body th:align="center">
+
+    <h1>글 작성</h1>
+
+    <form th:action="@{/posts/post}" th:method="POST" enctype="multipart/form-data">
+
+        <label th:for="title" th:text="제목"></label>
+        <input th:type="text" th:name="title"></br>
+
+        <label th:for="content" th:text="내용"></label>
+        <textarea th:name="content"></textarea></br>
+
+        <label th:for="imgFile" th:text="파일"></label>
+        <input th:type="file" th:name="imgFile"></br>
+
+        <input th:type="submit" th:value="등록">
+    </form>
+
+</body>
+</html>

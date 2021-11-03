@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+</head>
+<body th:align="center">
+
+    <h1>게시글</h1>
+
+    글번호 : <span th:text="${post.id}"></span><br><br>
+    제목 : <span th:text="${post.title}"></span><br><br>
+    내용 : <span th:text="${post.content}"></span><br><br>
+    사진 : <span th:text="${post.uploadFile.getStoreFileName()}"></span><br><br>
+    사진 : <img th:src="|/images/${post.uploadFile.getStoreFileName()}|" width="300" height="300"><br><br>
+<!--    작성자 : <span th:text="${post.user.id}"></span><br>-->
+
+    <a th:href="@{/posts/updatepost(id=${post.id})}">수정</a>
+    <a th:href="@{/posts/deletepost(id=${post.id})}">삭제</a>
+    <a th:href="@{/posts}">뒤로</a>
+
+</body>
+</html>
