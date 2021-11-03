@@ -43,3 +43,6 @@
 - [ ] Oauth2.0 Login
 - [ ] Frontend : Change TemplateEngine to React
 - [ ] Refactoring Service Structure
+
+## More
+> [개발 ](https://github.com/dogyun-k/dietBlog/blob/master/Summary.md)
