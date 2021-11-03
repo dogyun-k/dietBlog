@@ -1,5 +1,7 @@
 package com.example.hustar.api;
 
+import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
 
+@RequiredArgsConstructor
 @Service
 public class FlaskApi {
 
@@ -26,7 +29,7 @@ public class FlaskApi {
 
         // Header set
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
         // Body set
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
@@ -39,6 +42,7 @@ public class FlaskApi {
 
         // Request
         HttpEntity<String> response = restTemplate.postForEntity(url, requestMessage, String.class);
+
         return response.getBody();
     }
 
