@@ -38,13 +38,11 @@
 1. Web Server (Springboot)
 
    **URL**
-    - [GET] /main : 메인화면 제공
-    - [GET] /view : 업로드한 음식 리스트 제공
-    - [GET] /create : 음식 사진 포스트 화면
-    - [GET] /get-calorie : 사진 업로드 화면
-    - [POST] /update : 글 수정
-    - [POST] /delete : 글 삭제
-    - [POST] /get-calorie : 욜로서버로 사진 전송, DB저장. Redirect to Main.
+    - [GET] / : 메인화면 제공
+    - [GET] /posts : 업로드한 글 리스트 제공
+    - [GET] /postinfo : 음식 사진 포스트 화면
+    - [POST] /post : 글 수정
+    - [POST] /deletepost : 글 삭제
 
    **HTTP Message**
 
@@ -54,7 +52,7 @@
 
       Accept : Application/json
 
-      Content-type : Multipart/form-data
+      Content-type : Application/json
 
    그 외
 
@@ -65,12 +63,9 @@
 2. API Server (Flask)
 
    **URL**
-    - [POST] /getCalorie : 음식 사진 받아서 칼로리 값 응답
-
+    - [POST] /calorie : 음식 사진 받아서 칼로리 값 응답
       ![플라스크](Summary/images/FlaskPost.png)
-
     - Naver Open API(Papago) 요청
-
     - 음식칼로리 크롤링	(DB에 저장하기엔 방대함.)
 
 3. DB
@@ -86,15 +81,15 @@
    **Post Entity**
     - Long | seq
     - String | title
+    - String | content
     - String | melaType
-    - File | file
+    - UploadFile | uploadFile
 
-   **File Entity**
+   **UploadFile Entity**
     - Long | seq
-    - String | filePath
-    - String | originFileName
-    - String | storedFileName
-    - Post | postSeq
+    - String | uploadFileName
+    - String | storeFileName
+    - String | storedPath
 
 
 	사용자로부터 받은 이미지 파일은 서버 디렉토리에 저장. (DB에 저장 X)
@@ -109,17 +104,19 @@
 
 ### 추후 계획
 
-- React로 Front-end 구현
+- [ ] React로 Front-end 구현
 
-- Oauth 2.0으로 소셜 로그인 구현
+- [ ] Oauth 2.0으로 소셜 로그인 구현
 
-- 현재 API서버 응답 시간이 1초 정도걸리는데 이를 단축
+- [X] 현재 API서버 응답 시간이 1초 정도걸리는데 이를 단축
+	- Yolo 저장소에서 모델을 불러옴 -> detect 함수에서 바로 검출값을 리턴하도록 함. 
 
-    - 이미지 검출 시간 줄이기 : Yolo v5 모델 개선
+- [ ] Yolo v5 모델 개선
+	- 아직 다양한 음식들을 검출해내지 못 함. 
+    
+- [ ] API로직 개선 : 현재 API호출을 위해 사용하는 동기식 호출 방식인 RestTemplate를 비동기식인 WebClient로 마이그레이션.
 
-- API로직 개선 : 현재 API호출을 위해 사용하는 동기식 호출 방식인 RestTemplate를 비동기식인 WebClient로 마이그레이션.
-
-- AWS로 호스팅
+- [ ] AWS로 호스팅
 
 
 ## 어려웠던 점
