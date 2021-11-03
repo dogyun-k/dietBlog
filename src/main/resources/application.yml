@@ -29,10 +29,7 @@ spring:
 
 file:
   dir: C:/Users/kdk12/Desktop/file/
-#  dir: C:/Users/kdk12/Desktop/Source/resources/static/image
-#  dir: C:/Users/kdk12/Desktop/Source/hustar/src/main/resources/static/image/
-#  dir: C:/Users/kdk12/Desktop/Source/HustarICTProject/Server/img/
-
+#  dir: C:/Users/kdk12/Desktop/Source/dietBlog/src/main/resources/static/images/
 # restTemplate:
 #     factory:
 #         readTimeout: 10000
