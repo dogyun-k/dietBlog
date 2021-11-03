@@ -1,16 +1,19 @@
 package com.example.hustar.controller;
 
+import com.example.hustar.api.FlaskApi;
 import com.example.hustar.domain.Post;
 import com.example.hustar.domain.UploadFile;
-import com.example.hustar.service.UploadFileService;
 import com.example.hustar.service.PostService;
+import com.example.hustar.service.UploadFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,6 +23,7 @@ public class PostController {
 
     private final UploadFileService fileService;
     private final PostService postService;
+    private final FlaskApi flaskApi;
 
     @GetMapping
     public String readAllPost(Model model) {
@@ -44,9 +48,13 @@ public class PostController {
     }
 
     @PostMapping(value = "/post")
-    public String createPost(@RequestParam String title, @RequestParam String content, @RequestParam MultipartFile imgFile) throws IOException {
+    public String createPost(@RequestParam String title, @RequestParam String content, @RequestParam MultipartFile imgFile) throws Exception {
         UploadFile uploadFile = fileService.storeFile(imgFile);
         Post post = new Post(title, content, uploadFile);
+
+        String calorie = flaskApi.requestToFlask(uploadFile.getUploadFileName(), imgFile);
+        System.out.println(calorie);
+
         postService.createPost(post);
 
         return "redirect:/posts";

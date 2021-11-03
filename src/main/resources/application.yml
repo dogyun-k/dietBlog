@@ -8,7 +8,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
     generate-ddl: false
     show-sql: true
@@ -28,9 +28,10 @@ spring:
       max-request-size: 100MB
 
 file:
-#  dir: C:/Users/kdk12/Desktop/file/
+  dir: C:/Users/kdk12/Desktop/file/
 #  dir: C:/Users/kdk12/Desktop/Source/resources/static/image
-  dir: C:/Users/kdk12/Desktop/Source/hustar/src/main/resources/static/image/
+#  dir: C:/Users/kdk12/Desktop/Source/hustar/src/main/resources/static/image/
+#  dir: C:/Users/kdk12/Desktop/Source/HustarICTProject/Server/img/
 
 # restTemplate:
 #     factory:
