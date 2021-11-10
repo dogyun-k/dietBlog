@@ -1,6 +1,7 @@
 package com.example.hustar.controller;
 
 import com.example.hustar.api.FlaskApi;
+import com.example.hustar.domain.FlaskResponseDto;
 import com.example.hustar.domain.Post;
 import com.example.hustar.domain.UploadFile;
 import com.example.hustar.service.PostService;
@@ -57,10 +58,10 @@ public class PostController {
     public String createPost(@RequestParam String title, @RequestParam String content, @RequestParam MultipartFile imgFile) throws Exception {
 
         String storeFileName = fileService.createStoreFileName(imgFile.getOriginalFilename());
-        String calorie = flaskApi.requestToFlask(storeFileName, imgFile);
+        FlaskResponseDto calorie = flaskApi.requestToFlask(storeFileName, imgFile);
         UploadFile uploadFile = fileService.storeFile(imgFile);
 
-        Post post = new Post(title, content, calorie, uploadFile);
+        Post post = new Post(title, content, calorie.getFoodName().toString(), uploadFile);
         postService.createPost(post);
 
         return "redirect:/posts";

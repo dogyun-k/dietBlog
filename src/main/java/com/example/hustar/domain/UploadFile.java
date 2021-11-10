@@ -12,7 +12,7 @@ public class UploadFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "file_id")
+    @Column(name = "FILE_ID")
     private Long id;
 
     private String uploadFileName;
@@ -21,9 +21,10 @@ public class UploadFile {
 
     private String storedPath;
 
-    public UploadFile(){}
+    protected UploadFile() {
+    }
 
-    public UploadFile(String uploadFileName, String storeFileName, String storedPath){
+    public UploadFile(String uploadFileName, String storeFileName, String storedPath) {
         this.uploadFileName = uploadFileName;
         this.storeFileName = storeFileName;
         this.storedPath = storedPath;
