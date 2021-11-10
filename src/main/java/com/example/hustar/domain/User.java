@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -25,11 +27,11 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
     @Lob
     private String description;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> post = new ArrayList<Post>();
 
     public enum RoleType {
         ADMIN, USER

@@ -6,14 +6,14 @@
 </head>
 <body th:align="center">
 
-    <h1>게시글</h1>
+    <h1>내가 먹은 거</h1>
 
-    글번호 : <span th:text="${post.id}"></span><br><br>
-    제목 : <span th:text="${post.title}"></span><br><br>
+<!--    글번호 : <span th:text="${post.id}"></span><br><br>-->
+    끼니 : <span th:text="${post.title}"></span><br><br>
     내용 : <span th:text="${post.content}"></span><br><br>
     음식 : <span th:text="${post.foods}"></span><br><br>
     총 칼로리 : <span th:text="|${post.calorieInfo} kcal|"></span><br><br>
-    사진 : <img th:src="|/posts/image/${post.uploadFile.getStoreFileName()}|" width="300" height="300"><br><br>
+    <img th:src="|/posts/image/${post.uploadFile.getStoreFileName()}|" width="300" height="300"><br><br>
 <!--    해당 URL로 GET 요청을 하는 것-->
 <!--    작성자 : <span th:text="${post.user.id}"></span><br>-->
 

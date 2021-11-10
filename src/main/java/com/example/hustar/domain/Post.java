@@ -37,6 +37,10 @@ public class Post {
     @JoinColumn(name = "FILE_ID")
     private UploadFile uploadFile;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")       // User_ID 키를 관리할 주인은 POST와 USER중 누가 해야할까?
+    private User user;
+
     protected Post() {
     }
 
