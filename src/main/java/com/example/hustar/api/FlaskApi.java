@@ -1,10 +1,9 @@
 package com.example.hustar.api;
 
 import com.example.hustar.domain.FlaskResponseDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
-import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -48,24 +46,14 @@ public class FlaskApi {
 
         // Request
         HttpEntity<String> response = restTemplate.postForEntity(url, requestMessage, String.class);
-        System.out.println("\n\n" + response.getBody() + "\n\n");
+//        System.out.println("\nContent-Type : " + response.getHeaders().getContentType());
+//        System.out.println("Body : " + response.getBody());
+//        System.out.println("Body Type : " + response.getBody().getClass() + "\n\n");
 
         // Response 파싱
         FlaskResponseDto dto = new FlaskResponseDto();
-
-        try {
-            JSONObject jsonObject = new JSONObject("{\"foodname\": [\"rice\"], \"calorie\": [\"310\"]}");
-            System.out.println("\n\n" + jsonObject.getString("foodname"));
-
-            JSONArray foodName = jsonObject.getJSONArray("foodname");
-            JSONArray calorie = jsonObject.getJSONArray("calorie");
-
-            dto.setFoodName((List<String>) foodName);
-            dto.setCalorie((List<String>) calorie);
-
-        } catch (JSONException e) {
-            System.out.println("Can't parse Data : " + response.getBody());
-        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        dto = objectMapper.readValue(response.getBody(), FlaskResponseDto.class);
 
         return dto;
     }

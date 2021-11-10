@@ -1,10 +1,12 @@
 package com.example.hustar.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @ToString
 @Getter
@@ -24,7 +26,9 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-    private String calorieInfo;
+    private String foods;
+
+    private Integer calorieInfo;
 
     @Temporal(TemporalType.DATE)
     private Date createDate = new Date();
@@ -36,9 +40,10 @@ public class Post {
     protected Post() {
     }
 
-    public Post(String title, String content, String calorieInfo, UploadFile uploadFile) {
+    public Post(String title, String content, String foods, Integer calorieInfo, UploadFile uploadFile) {
         this.title = title;
         this.content = content;
+        this.foods = foods;
         this.calorieInfo = calorieInfo;
         this.uploadFile = uploadFile;
     }

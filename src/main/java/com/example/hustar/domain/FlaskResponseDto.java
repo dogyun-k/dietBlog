@@ -6,20 +6,28 @@ import lombok.ToString;
 
 import java.util.List;
 
-@ToString
 @Getter
 @Data
 public class FlaskResponseDto {
 
-    private List<String> foodName;
+    private List<String> foodname;
 
-    private List<String> calorie;
+    private List<Integer> calorie;
 
     public FlaskResponseDto(){}
 
-    public FlaskResponseDto(List<String> foodName, List<String> calorie){
-        this.foodName = foodName;
+    public FlaskResponseDto(List<String> foodname, List<Integer> calorie){
+        this.foodname = foodname;
         this.calorie = calorie;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        for(String i : this.foodname){
+            result.append(", ").append(i);
+        }
+        return result.toString();
     }
 
 }
