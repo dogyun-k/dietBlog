@@ -59,11 +59,10 @@ View
 
 ![FlaskClassDiagram](./images/FlaskClassDiagram.png)
 
-URL
-
-- [POST] /calorie : 음식 사진 받아서 칼로리 값 응답
-- Naver Open API(Papago) 요청
-- 음식의 칼로리는 크롤링으로 한다. (성능 저하 시 DB에 저장)
+- [POST] /calorie : 음식 칼로리 응답
+- detect : 사진, 모델 학습 weight를 받아 class 검출
+- get_calorie : 이미지에서 음식 검출
+- search_calorie : Naver API 요청, 칼로리 크롤링
 
 ### 3) **DB**
 
@@ -77,9 +76,25 @@ URL
 
 ![UML](./images/uml.png)
 
-4. UI
+### 4) **UI**
 
-	- 아직 미구현
+**기능 구현에 중점을 뒀습니다.**
+
+- 전체 일지 목록
+
+    ![posts](./images/posts.png)
+
+-----------------------------------
+- 글 올리기
+
+    ![post](./images/post.png)
+
+-----------------------------------
+- 세부사항
+
+    ![postinfo](./images/postinfo.png)
+
+
 
 ## 추후 계획
 
