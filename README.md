@@ -10,11 +10,14 @@
 
 하루동안 섭취한 음식의 칼로리를 확인하고 식단을 조절해보세요.
 
+- 직접 칼로리를 입력 ❌
+- 앱 내 검색으로 입력 ❌
+
 ## ⭐ Main Feature
 
 - 이미지 분석으로 사진 속 음식들 칼로리 계산.
 
-## 🔧 Stack
+## 🔧 Stack
 
 **Java Springboot**
 
@@ -40,9 +43,9 @@
 
 **Developer Requirements**
 - [X] API Request / Response
-- [ ] Oauth2.0 Login
+- [ ] Oauth2.0 Login (Session Handling)
 - [ ] Frontend : Change TemplateEngine to React
 - [ ] Refactoring Service Structure
 
-## More
-> [개발 ](https://github.com/dogyun-k/dietBlog/blob/master/Summary.md)
+## 👀 More
+> [개발](https://github.com/dogyun-k/dietBlog/blob/master/Summary.md)

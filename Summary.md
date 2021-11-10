@@ -2,122 +2,94 @@
 
 ### 휴스타 ICT 설계 프로젝트
 
-### 1) 개요
+## 1. 개요
 
-음식 사진을 찍어 업로드하면 칼로리를 계산하여 기록.
+- Springboot 기반의 웹서비스 제작
+- Flask로 API 서버 구축 및 REST API 호출
+- HTTP Protocol
 
-추후 칼로리 소모를 위한 운동영상 추천 등 다양한 컨텐츠를 추가할 예정.
+## 2. 요구사항
 
-> API 서버 구축 및 REST API 호출.
+**User Requirements**
 
-### 2) 요구사항
+- 글 쓰기
+- 글 수정
+- 글 삭제
+- 글 조회
+- 사진 업로드
+- 칼로리 확인
+- 전체 업로드 리스트 확인
+- 로그인/ 회원가입 : Oauth 소셜 로그인(Google, Naver..)
 
-1. Springboot : 웹서버. UI 제공
+**Developver Requirements**
 
-    - 글 업로드 : title, content, date
-    - 사진 업로드 : image
-    - 글 수정 : title, content
-    - 글 삭제 : seq
-    - 글 조회
-    - 전체 업로드 리스트 확인
-    - 로그인/ 회원가입 : Oauth 소셜 로그인(Google, Naver..)
+1. Springboot : 웹서버로써 사용자 UI 제공
+	- 내부 API Request / Response
+	- External API Request / Response
+	- 로그인을 위한 Session / Cookie
+	- 소셜 로그인을 위한 Oauth 2.0
 
-2. Flask : API 서버 (욜로v5)
+4. Flask : API 서버 (욜로v5)
+	- 음식 인식 : image file
+	- 음식이름 번역 : en food name
+	- 음식 칼로리 크롤링 : kr food name
 
-    - 음식 인식 : image file
-    - 음식이름 번역 : en food name
-    - 음식 칼로리 크롤링 : kr food name
+**Use-Case Diagram**
 
+![useCaseDiagram](./images/useCaseDiagram.png)
 
-### 3) 시스템 설계
+## 3. 시스템 설계
 
-#### 구조
+**Web Architecture**
 
-![구조](Summary/images/구조.png)
+![WebArchitecture](./images/WebArchtecture.png)
 
-1. Web Server (Springboot)
+### 1) **Web App Server**
 
-   **URL**
-    - [GET] / : 메인화면 제공
-    - [GET] /posts : 업로드한 글 리스트 제공
-    - [GET] /postinfo : 음식 사진 포스트 화면
-    - [POST] /post : 글 수정
-    - [POST] /deletepost : 글 삭제
+View
 
-   **HTTP Message**
+- /index : 블로그로 들어갈 수 있는 페이지
+- /user/login : 로그인을 하는 페이지
+- /user/register : 회원가입을 하는 페이지
+- /posts : 전체 글 목록을 보는 페이지
+- /posts/postinfo : 단일 글 내용 및 삭제를 할 수 있는 페이지
+- /posts/post : 글 작성을 하는 페이지
 
-   파일 처리
+### 2) **API Server**
 
-    - Request Message
+![FlaskClassDiagram](./images/FlaskClassDiagram.png)
 
-      Accept : Application/json
+URL
 
-      Content-type : Application/json
+- [POST] /calorie : 음식 사진 받아서 칼로리 값 응답
+- Naver Open API(Papago) 요청
+- 음식의 칼로리는 크롤링으로 한다. (성능 저하 시 DB에 저장)
 
-   그 외
+### 3) **DB**
 
-    - Content-type : Application/json
+**Entity-Relationship Diagram**
 
-   API Server와 통신은 RestTemplate 사용
+데이터베이스 설계를 위한 객체 관계 다이어그램
 
-2. API Server (Flask)
+![ERD](./images/erd.png)
 
-   **URL**
-    - [POST] /calorie : 음식 사진 받아서 칼로리 값 응답
-      ![플라스크](Summary/images/FlaskPost.png)
-    - Naver Open API(Papago) 요청
-    - 음식칼로리 크롤링	(DB에 저장하기엔 방대함.)
+**UML 상세 다이어그램**
 
-3. DB
+![UML](./images/uml.png)
 
-   MySQL
+4. UI
 
-   **User Entity**
-    - Long | seq
-    - String | id
-    - String | pw
-    - String | name
+	- 아직 미구현
 
-   **Post Entity**
-    - Long | seq
-    - String | title
-    - String | content
-    - String | melaType
-    - UploadFile | uploadFile
-
-   **UploadFile Entity**
-    - Long | seq
-    - String | uploadFileName
-    - String | storeFileName
-    - String | storedPath
-
-
-	사용자로부터 받은 이미지 파일은 서버 디렉토리에 저장. (DB에 저장 X)
-
-	DB에는 파일 고유 번호와 파일 경로 저장.
-
-#### UI 설계
-
-[comment]: <> (![UI설계]&#40;Summary/images/UI설계.jpg&#41;)
-
-- 아직 미구현
-
-### 추후 계획
+## 추후 계획
 
 - [ ] React로 Front-end 구현
-
 - [ ] Oauth 2.0으로 소셜 로그인 구현
-
 - [X] 현재 API서버 응답 시간이 1초 정도걸리는데 이를 단축
 	- Yolo 저장소에서 모델을 불러옴 -> detect 함수에서 바로 검출값을 리턴하도록 함. **0.2x초로 단축**
-
 - [ ] Yolo v5 모델 개선
-	- 아직 다양한 음식들을 검출해내지 못 함. 
-    
-- [ ] API로직 개선 : 현재 API호출을 위해 사용하는 동기식 호출 방식인 RestTemplate를 비동기식인 WebClient로 마이그레이션.
-
+	- 아직 다양한 음식들을 검출해내지 못 함.
 - [ ] AWS로 호스팅
-
 
 ## 어려웠던 점
 
@@ -129,3 +101,4 @@
 - 그래서 이미지 파일을 바이너리화 해서 스트링으로 변환 후 Json Type으로 전송함.
 - 플라스크에서는 해당 String을 `Base64`로 String to Binary 디코딩하여 파일을 저장함.
 - Yolov5의 detect는 이미지를 경로에서 읽어옴 -> 맨 처음에는 저장소에서 불러와서 1.x초가 걸렸는데 수정 후 0.x초 걸림
+- json 전송 시 json.dumps -> jsonify 를 두 번 해줘서 서버에서 응답을 제대로 안 해줬다.
