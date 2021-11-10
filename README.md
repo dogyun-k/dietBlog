@@ -12,7 +12,7 @@
 
 ## ⭐ Main Feature
 
-- 이미지 분석을 통해 사진 속 음식의 칼로리 계산.
+- 이미지 분석으로 사진 속 음식들 칼로리 계산.
 
 ## 🔧 Stack
 
@@ -33,7 +33,7 @@
 **User Requirements**
 - [X] 게시글 업로드
 - [X] 사진 업로드
-- [ ] 칼로리 확인
+- [X] 칼로리 확인
 - [ ] 로그인 / 회원가입
 - [ ] 일자 별 게시 글 분류
 - [ ] 운동 영상 추천
@@ -43,3 +43,6 @@
 - [ ] Oauth2.0 Login
 - [ ] Frontend : Change TemplateEngine to React
 - [ ] Refactoring Service Structure
+
+## More
+> [개발 ](https://github.com/dogyun-k/dietBlog/blob/master/Summary.md)
