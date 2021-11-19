@@ -1,10 +1,19 @@
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/knuDietBlog?serverTimezone=UTC&characterEncoding=UTF-8
+    # RDS MariaDB
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://dietblog.c8hynnw3dhnt.ap-northeast-2.rds.amazonaws.com:3306/dietblog
     username: dogyun
-    password: 1234
+    password: kdk519437
+
+  # Local MySQL
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/knuDietBlog?serverTimezone=UTC&characterEncoding=UTF-8
+#    username: dogyun
+#    password: 1234
+
+
 
   jpa:
     hibernate:
@@ -28,13 +37,6 @@ spring:
       max-request-size: 100MB
 
 file:
-  dir: C:/Users/kdk12/Desktop/file/
-#  dir: C:/Users/kdk12/Desktop/Source/dietBlog/src/main/resources/static/images/
-# restTemplate:
-#     factory:
-#         readTimeout: 10000
-#         connectTimeout: 10000
-#     httpClient:
-#         maxConnTotal: 100
-#         maxConnPerRoute: 5
+  dir: C:/Users/kdk12/Desktop/file/   # 실제 파일을 저장할 곳
+
 
