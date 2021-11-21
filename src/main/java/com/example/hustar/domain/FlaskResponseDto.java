@@ -2,10 +2,12 @@ package com.example.hustar.domain;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Data
 public class FlaskResponseDto {
@@ -13,8 +15,6 @@ public class FlaskResponseDto {
     private List<String> foodname;
 
     private List<Integer> calorie;
-
-    public FlaskResponseDto(){}
 
     public FlaskResponseDto(List<String> foodname, List<Integer> calorie){
         this.foodname = foodname;
