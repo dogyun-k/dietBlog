@@ -1,5 +1,8 @@
 
 spring:
+  profiles:
+    include: oauth
+
   datasource:
     # RDS MariaDB
     driver-class-name: org.mariadb.jdbc.Driver
@@ -13,7 +16,10 @@ spring:
 #    username: dogyun
 #    password: 1234
 
-
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
 
   jpa:
     hibernate:

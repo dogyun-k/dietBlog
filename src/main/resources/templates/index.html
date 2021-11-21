@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+
+<body th:align="center">
+
+<h1>칼로리를 확인하고 식단을 조절하세요!</h1>
+
+<p th:if="${user} != null">
+    <span th:text="|${user.getName()} 님 안녕하세요.|"></span><br>
+    <a th:href="@{/logout}">Logout</a><br>
+    <a th:href="@{/posts}">포스트</a>
+</p>
+
+<p th:if="${user} == null">
+    <a th:href="@{/login}">Login</a>
+</p>
+
+
+</body>
+
+</html>

@@ -1,9 +1,11 @@
 package com.example.hustar.controller;
 
 import com.example.hustar.api.FlaskApi;
+import com.example.hustar.config.auth.dto.SessionUser;
 import com.example.hustar.domain.FlaskResponseDto;
 import com.example.hustar.domain.Post;
 import com.example.hustar.domain.UploadFile;
+import com.example.hustar.domain.User;
 import com.example.hustar.service.PostService;
 import com.example.hustar.service.UploadFileService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.net.MalformedURLException;
 import java.util.List;
 
@@ -25,11 +28,17 @@ public class PostController {
     private final UploadFileService fileService;
     private final PostService postService;
     private final FlaskApi flaskApi;
+    private final HttpSession httpSession;
 
     @GetMapping
     public String readAllPost(Model model) {
-        List<Post> posts = postService.readAllPost();
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postService.readAllPost());
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if(user != null){
+            model.addAttribute("userName", user.getName());
+        }
 
         return "postsView";
     }

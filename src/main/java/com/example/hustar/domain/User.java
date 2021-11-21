@@ -1,14 +1,15 @@
 package com.example.hustar.domain;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Setter
+@NoArgsConstructor
 @Getter
 @Entity
 public class User {
@@ -17,28 +18,35 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     private String email;
 
-    private String password;
-
     @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    @Column(nullable = false)
+    private Role role;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-
-    @Lob
-    private String description;
+    private Date createDate = new Date();
 
     @OneToMany(mappedBy = "user")
     private List<Post> post = new ArrayList<Post>();
 
-    public enum RoleType {
-        ADMIN, USER
+    @Builder
+    public User(String name, String email, Role role) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
     }
 
-    // 기본 생성자 ( 다른 생성자가 없으면 굳이 안 해도 됨 )
-    public User() {
+    public User update(String name) {
+        this.name = name;
+        return this;
     }
 
+    public String getRoleKey() {
+        return this.role.getKey();
+    }
 }
