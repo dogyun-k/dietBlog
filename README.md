@@ -37,13 +37,13 @@
 - [X] 게시글 업로드
 - [X] 사진 업로드
 - [X] 칼로리 확인
-- [ ] 로그인 / 회원가입
+- [X] 구글 로그인
 - [ ] 일자 별 게시 글 분류
 - [ ] 운동 영상 추천
 
 **Developer Requirements**
 - [X] API Request / Response
-- [ ] Oauth2.0 Login (Session Handling)
+- [X] Oauth2.0 Login (Session Handling)
 - [ ] Frontend : Change TemplateEngine to React
 - [ ] Refactoring Service Structure
 
