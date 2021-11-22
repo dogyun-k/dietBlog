@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>게시판</title>
+    <div th:replace="/fragments/header.html :: fragment-header"></div>
 </head>
+
 <body th:align="center">
 
-    <h1>음식 일지</h1>
+<nav th:replace="/fragments/nav.html :: fragment-nav"></nav>
 
-    <a href="/posts/post">오늘 먹은 거 올리기</a>
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 th:text="|${userName}님의 일지|" class="fw-light"></h1>
+            <p class="lead text-muted">오늘 섭취한 총 칼로리</p>
+            <p>
+                <a th:href="@{/posts/post}" class="btn btn-primary my-1">식단 올리기</a>
+            </p>
+        </div>
+    </div>
+</section>
 
-    <table th:align="center">
-        <th>날짜</th>
-        <th>끼니</th>
-        <th>칼로리</th>
-        <tr th:each="post : ${posts}">
-            <td th:text="${post.createDate}"></td>
-            <td><a th:href="@{/posts/postinfo(id=${post.id})}" th:text="${post.title}"></a></td>
-            <td th:text="|${post.calorieInfo} kcal|"></td>
-        </tr>
-    </table>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+
+                <div th:if="${posts.size()} == 0" class="text-center mx-auto">
+                    <p class="lead text-muted">첫 식단을 올려보세요!</p>
+                </div>
+
+                <div th:each="post : ${posts}" class="card shadow-m">
+                    <img src="img/logo.png" width="100%" height="100%" alt="">
+
+                    <div class="card-body">
+                        <p class="card-text">음식 | 칼로리</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">더보기</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">수정</button>
+                            </div>
+                            <small class="text-muted">9 mins</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="/fragments/footer.html :: fragment-footer"></footer>
 
 </body>
 </html>

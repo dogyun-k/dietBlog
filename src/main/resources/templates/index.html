@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Index</title>
+    <div th:replace="/fragments/header.html :: fragment-header"></div>
 </head>
 
 <body th:align="center">
 
-<h1>칼로리를 확인하고 식단을 조절하세요!</h1>
+<nav th:replace="/fragments/nav.html :: fragment-nav"></nav>
 
-<p th:if="${user} != null">
-    <span th:text="|${user.getName()} 님 안녕하세요.|"></span><br>
-    <a th:href="@{/logout}">Logout</a><br>
-    <a th:href="@{/posts}">포스트</a>
-</p>
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-6 fw-bold">칼로리를 확인하고 식단을 조절하세요!</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-2">다이어트에 필수적인 식단관리.</p>
 
-<p th:if="${user} == null">
-    <a th:href="@{/login}">Login</a>
-</p>
+        <p class="lead mb-2">사진을 찍어 올리면 칼로리를 계산해줍니다!</p>
 
+        <p class="lead mb-4">하루동안 섭취한 음식의 칼로리를 확인하고 식단을 조절해보세요.</p>
+
+        <p class="lead mb-2">직접 칼로리 입력 ❌</p>
+        <p class="lead mb-5">앱 내 검색 입력 ❌</p>
+
+
+        <div th:if="${user} != null" class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" onclick="location.href='/posts'" class="btn btn-primary btn-lg px-4 gap-3">내 식단</button>
+            <button type="button" onclick="location.href='#'" class="btn btn-outline-secondary btn-lg px-4">게시판</button>
+            <button type="button" onclick="location.href='/logout'" class="btn btn-outline-secondary btn-lg px-4">로그아웃</button>
+        </div>
+
+        <div th:if="${user} == null" class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="button" onclick="location.href='/login'" class="btn btn-outline-secondary btn-lg px-4">로그인</button>
+        </div>
+
+    </div>
+    <!--    <img class="d-block mx-auto mb-4" src="img/linkedin_banner_image_2.png" alt="" width="70%" height="100%">-->
+</div>
+
+<footer th:replace="/fragments/footer.html :: fragment-footer"></footer>
 
 </body>
-
 </html>

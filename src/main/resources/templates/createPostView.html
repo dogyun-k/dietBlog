@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>글 쓰기</title>
+    <div th:replace="/fragments/header.html :: fragment-header"></div>
 </head>
+
 <body th:align="center">
 
-    <h1>글 작성</h1>
+<nav th:replace="/fragments/nav.html :: fragment-nav"></nav>
 
-    <form th:action="@{/posts/post}" method="POST" enctype="multipart/form-data">
+<div class="container align-items-center">
+    <div class="py-5 text-center">
+        <h2>식단 올리기</h2>
+        <p class="lead"></p>
+    </div>
 
-        <label th:for="title" th:text="제목"></label>
-        <input th:type="text" th:name="title"></br>
+    <form th:action="@{/posts/post}" method="POST" enctype="multipart/form-data"
+          class="row row-cols-lg-auto g-3 align-items-center">
 
-        <label th:for="content" th:text="내용"></label>
-        <textarea th:name="content"></textarea></br>
+        <input th:type="file" th:name="imgFile" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 
-        <label th:for="imgFile" th:text="파일"></label>
-        <input th:type="file" th:name="imgFile"></br>
+        <label class="visually-hidden" for="mealType">Choose..</label>
+        <select class="form-select" id="mealType" th:name="mealType">
+            <option selected>끼니...</option>
+            <option value="morning">아침</option>
+            <option value="lunch">점심</option>
+            <option value="dinner">저녁</option>
+            <option value="snack">간식</option>
+        </select>
 
-        <input th:type="submit" th:value="등록">
+        <label for="content" class="visually-hidden">내용</label>
+        <textarea th:type="text" th:name="content" class="form-control" id="content" placeholder="세부사항"></textarea>
+
+        <button th:type="submit" class="btn btn-outline-success btn-lg">완료</button>
     </form>
+
+</div>
+
+<footer th:replace="/fragments/footer.html :: fragment-footer"></footer>
 
 </body>
 </html>

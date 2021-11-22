@@ -23,8 +23,7 @@ public class Post {
     @Lob
     private String content;
 
-    @Enumerated(EnumType.STRING)
-    private MealType mealType;
+    private String mealType;
 
     private String foods;
 
@@ -44,8 +43,7 @@ public class Post {
     protected Post() {
     }
 
-    public Post(String title, String content, String foods, Integer calorieInfo, UploadFile uploadFile) {
-        this.title = title;
+    public Post(String content, String foods, Integer calorieInfo, UploadFile uploadFile) {
         this.content = content;
         this.foods = foods;
         this.calorieInfo = calorieInfo;

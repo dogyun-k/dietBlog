@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
                     .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
-                    .antMatchers("/posts/**").hasRole(Role.GUEST.name())     // 권한 확인 후 권한 준다.
+//                    .antMatchers("/posts/**").hasRole(Role.GUEST.name())     // 권한 확인 후 권한 준다.
                     .anyRequest().authenticated()
                 .and()
                     .logout()
