@@ -1,6 +1,5 @@
 package com.example.hustar.config.auth;
 
-import com.example.hustar.domain.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
+                    .antMatchers("/", "/main", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
 //                    .antMatchers("/posts/**").hasRole(Role.GUEST.name())     // 권한 확인 후 권한 준다.
                     .anyRequest().authenticated()
                 .and()

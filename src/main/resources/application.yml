@@ -38,9 +38,9 @@ spring:
   servlet:
     multipart:
       enabled: true
-      location: /home/ec2-user/app/images
+      location: C:\Users\kdk12\Desktop\file\
       max-file-size: 100MB
       max-request-size: 100MB
 
 file:
-  dir: /home/ec2-user/app/images/   # 실제 파일을 저장할 곳
+  dir: C:\Users\kdk12\Desktop\file\   # 실제 파일을 저장할 곳

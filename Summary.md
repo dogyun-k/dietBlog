@@ -1,6 +1,6 @@
-# dietblog
+# DIBLY
 
-### 휴스타 ICT 설계 프로젝트
+### 종합 헬스 서비스 개발
 
 ## 1. 개요
 
@@ -12,14 +12,11 @@
 
 **User Requirements**
 
-- 글 쓰기
-- 글 수정
-- 글 삭제
-- 글 조회
+- 글쓰기, 조회, 수정, 삭제
 - 사진 업로드
 - 칼로리 확인
 - 전체 업로드 리스트 확인
-- 로그인/ 회원가입 : Oauth 소셜 로그인(Google, Naver..)
+- 로그인 : Oauth 2.0 소셜 로그인(Google)
 
 **Developver Requirements**
 
@@ -46,14 +43,31 @@
 
 ### 1) **Web App Server**
 
-View
+**View**
 
-- /index : 블로그로 들어갈 수 있는 페이지
-- /user/login : 로그인을 하는 페이지
-- /user/register : 회원가입을 하는 페이지
+- /main : 블로그로 들어갈 수 있는 페이지
+- /login : 로그인을 하는 페이지 (Oauth)
 - /posts : 전체 글 목록을 보는 페이지
-- /posts/postinfo : 단일 글 내용 및 삭제를 할 수 있는 페이지
 - /posts/post : 글 작성을 하는 페이지
+- /posts/post/{id} : 단일 글 내용 확인
+
+
+**API**
+
+RESTful API를 설계했습니다.
+
+- [GET] / : main으로 redirect하는 URL
+- [GET] /main : 메인페이지를 제공하는 URL
+- [GET] /posts : 글 목록을 제공하는 URL
+
+- [GET] /posts/post : 글 작성 페이지를 제공하는 URL
+- [POST] /posts/post : 새 글을 저장하는 URL
+
+- [GET] /posts/post/{id} : 단일 글 정보를 제공하는 URL
+- [POST] /posts/post/{id} : 글 수정 요청을 하는 URL
+- [DELETE] /posts/post/{id} : 글 삭제 요청을 하는 URL
+
+- [GET] /image/{filename} : filename에 대한 이미지 파일을 제공하는 URL
 
 ### 2) **API Server**
 
@@ -98,6 +112,7 @@ View
 
 ## 추후 계획
 
+- [X] UI 개선
 - [ ] React로 Front-end 구현
 - [X] Oauth 2.0으로 소셜 로그인 구현 (Google)
 - [X] 현재 API서버 응답 시간이 1초 정도걸리는데 이를 단축

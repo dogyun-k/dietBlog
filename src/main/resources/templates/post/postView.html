@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:h="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="/fragments/header.html :: fragment-header"></div>
+</head>
+
+<body th:align="center">
+
+<nav th:replace="/fragments/nav.html :: fragment-nav"></nav>
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <input type="hidden" class="post-id" th:value="${post.id}">
+            <p th:text="${post.createDate.toString()}" class="lead fw-light"></p>
+            <h2 th:text="|${post.calorieInfo} kcal|" class="fw-light"></h2>
+            <p th:text="${post.mealType}" class="lead text-muted"></p>
+
+            <!-- 해당 URL로 GET 요청을 해서 이미지를 받아옴-->
+            <img th:src="|/image/${post.uploadFile.getStoreFileName()}|" width="100%" class="img-fluid" alt="...">
+
+            <br><br>
+            <h3 th:text="About" class="fst-italic fw-lighter"></h3>
+            <h2 th:text="${post.content}" class="font-monospace lead text-muted lh-lg"></h2>
+        </div>
+    </div>
+
+    <div class="justify-content-between align-items-center">
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">수정</button>
+            <button type="button" class="btn-delete btn btn-sm btn-outline-secondary">삭제</button>
+            <button type="button" class="btn-cancel btn btn-sm btn-outline-secondary">뒤로</button>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="/fragments/footer.html :: fragment-footer"></footer>
+
+</body>
+</html>

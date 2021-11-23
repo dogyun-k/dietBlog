@@ -1,6 +1,6 @@
 package com.example.hustar.service;
 
-import com.example.hustar.domain.UploadFile;
+import com.example.hustar.domain.post.UploadFile;
 import com.example.hustar.repository.UploadFileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

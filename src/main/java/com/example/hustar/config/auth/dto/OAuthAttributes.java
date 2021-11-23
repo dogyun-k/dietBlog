@@ -1,7 +1,7 @@
 package com.example.hustar.config.auth.dto;
 
-import com.example.hustar.domain.Role;
-import com.example.hustar.domain.User;
+import com.example.hustar.domain.user.Role;
+import com.example.hustar.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -2,27 +2,28 @@ package com.example.hustar.controller;
 
 import com.example.hustar.api.FlaskApi;
 import com.example.hustar.config.auth.dto.SessionUser;
-import com.example.hustar.domain.FlaskResponseDto;
-import com.example.hustar.domain.Post;
-import com.example.hustar.domain.UploadFile;
+import com.example.hustar.domain.post.FlaskResponseDto;
+import com.example.hustar.domain.post.Post;
+import com.example.hustar.domain.post.UploadFile;
+import com.example.hustar.domain.user.User;
 import com.example.hustar.service.PostService;
 import com.example.hustar.service.UploadFileService;
+import com.example.hustar.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.net.MalformedURLException;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RequestMapping(value = "/posts")
 @Controller
 public class PostController {
 
+    private final UserService userService;
     private final UploadFileService fileService;
     private final PostService postService;
     private final FlaskApi flaskApi;
@@ -30,38 +31,38 @@ public class PostController {
 
     @GetMapping
     public String viewAllPost(Model model) {
-        model.addAttribute("posts", postService.readAllPost());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
-        if (user != null) {
-            model.addAttribute("userName", user.getName());
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        Optional<User> user = userService.findByEmail(sessionUser.getEmail());
+        if (user.isPresent()){
+            model.addAttribute("posts", postService.findAllByUser(user.get()));
+            model.addAttribute("userName", user.get().getName());
         }
 
-        return "postsView";
+        return "post/postsView";
     }
 
-    @GetMapping(value = "/postinfo")
-    public String viewPost(@RequestParam Long id, Model model) {
+    @GetMapping(value = "/post/{id}")
+    public String viewPost(@PathVariable Long id, Model model) {
         Post post = postService.readPostById(id);
         model.addAttribute("post", post);
 
-        return "postView";
-    }
-
-    @ResponseBody
-    @GetMapping(value = "/image/{filename}")
-    public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
-        return new UrlResource("file:" + fileService.getFullPath(filename));
+        return "post/postView";
     }
 
     @GetMapping(value = "/post")
     public String viewCreatePost() {
-        return "createPostView";
+        return "post/createPostView";
     }
 
     @PostMapping(value = "/post")
-    public String createPost(@RequestParam String content, @RequestParam MultipartFile imgFile) throws Exception {
+    public String createPost(@RequestParam String mealType, @RequestParam String content, @RequestParam MultipartFile imgFile) throws Exception {
+
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        Optional<User> user = Optional.empty();
+        if (sessionUser != null) {
+            user = userService.findByEmail(sessionUser.getEmail());
+        }
 
         FlaskResponseDto calorieInfo = flaskApi.requestToFlask(fileService.createStoreFileName(imgFile.getOriginalFilename()), imgFile);
         UploadFile uploadFile = fileService.storeFile(imgFile);
@@ -72,16 +73,18 @@ public class PostController {
             totalCalorie += i;
         }
 
-        Post post = new Post(content, calorieInfo.getFoodname().toString(), totalCalorie, uploadFile);
-        postService.createPost(post);
+        if (user.isPresent()){
+            Post post = new Post(mealType, content, calorieInfo.getFoodname().toString(), totalCalorie, uploadFile, user.get());
+            postService.createPost(post);
+        }
 
         return "redirect:/posts";
     }
 
-    @GetMapping(value = "/deletepost")
-    public String deletePost(@RequestParam Long id) {
+    @DeleteMapping(value = "/post/{id}")
+    public Long deletePost(@PathVariable Long id) {
         postService.deletePostById(id);
-        return "redirect:/posts";
+        return id;
     }
 
 }

@@ -1,12 +1,11 @@
-package com.example.hustar.domain;
+package com.example.hustar.domain.post;
 
-import lombok.Builder;
+import com.example.hustar.domain.user.User;
 import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @ToString
 @Getter
@@ -43,11 +42,13 @@ public class Post {
     protected Post() {
     }
 
-    public Post(String content, String foods, Integer calorieInfo, UploadFile uploadFile) {
+    public Post(String mealType, String content, String foods, Integer calorieInfo, UploadFile uploadFile, User user) {
+        this.mealType = mealType;
         this.content = content;
         this.foods = foods;
         this.calorieInfo = calorieInfo;
         this.uploadFile = uploadFile;
+        this.user = user;
     }
 
 }

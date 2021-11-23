@@ -1,5 +1,6 @@
-package com.example.hustar.domain;
+package com.example.hustar.domain.user;
 
+import com.example.hustar.domain.post.Post;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +15,8 @@ import java.util.List;
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue
+    @Column(name = "USER_ID")
     private Long id;
 
     @Column(nullable = false)

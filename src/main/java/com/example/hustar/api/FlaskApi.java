@@ -1,10 +1,8 @@
 package com.example.hustar.api;
 
-import com.example.hustar.domain.FlaskResponseDto;
+import com.example.hustar.domain.post.FlaskResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -15,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service

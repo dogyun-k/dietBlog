@@ -15,13 +15,18 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping(value = "/")
-    public String index(Model model) {
+    public String index() {
+        return "redirect:/main";
+    }
+
+    @GetMapping(value = "/main")
+    public String main(Model model) {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if (user != null) {
             model.addAttribute("user", user);
         }
 
-        return "index";
+        return "main";
     }
 }
