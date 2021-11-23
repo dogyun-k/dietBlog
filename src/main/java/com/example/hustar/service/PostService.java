@@ -1,6 +1,7 @@
 package com.example.hustar.service;
 
-import com.example.hustar.domain.Post;
+import com.example.hustar.domain.post.Post;
+import com.example.hustar.domain.user.User;
 import com.example.hustar.repository.PostRepository;
 import com.example.hustar.repository.UploadFileRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,10 @@ public class PostService {
         Long fileId = postRepository.getById(id).getUploadFile().getId();
         postRepository.deleteById(id);
         fileRepository.deleteById(fileId);
+    }
+
+    public List<Post> findAllByUser(User user){
+        return postRepository.findAllByUser(user);
     }
 
 }

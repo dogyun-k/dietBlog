@@ -1,6 +1,6 @@
 package com.example.hustar.config.auth.dto;
 
-import com.example.hustar.domain.User;
+import com.example.hustar.domain.user.User;
 import lombok.Getter;
 
 import java.io.Serializable;

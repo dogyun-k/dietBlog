@@ -1,6 +1,6 @@
 package com.example.hustar.repository;
 
-import com.example.hustar.domain.User;
+import com.example.hustar.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

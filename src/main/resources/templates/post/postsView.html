@@ -22,32 +22,37 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
+
+        <div th:if="${posts.size()} == 0" class="text-center mx-auto">
+            <p class="lead text-muted">식단 관리를 시작하세요!</p>
+        </div>
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col">
+            <div th:each="post : ${posts}" class="col">
+                <div class="card shadow-m">
+                    <input type="hidden" class="post-id" th:value="${post.id}">
 
-                <div th:if="${posts.size()} == 0" class="text-center mx-auto">
-                    <p class="lead text-muted">첫 식단을 올려보세요!</p>
-                </div>
+                    <p th:text="${post.mealType}" class="lead text-muted text-center card-text"></p>
 
-                <div th:each="post : ${posts}" class="card shadow-m">
-                    <img src="img/logo.png" width="100%" height="100%" alt="">
+                    <img th:src="|/image/${post.uploadFile.getStoreFileName()}|" height="100%" alt="Not Found">
 
                     <div class="card-body">
-                        <p class="card-text">음식 | 칼로리</p>
+                        <p th:text="${post.foods}" class="card-text"></p>
+                        <p th:text="${post.calorieInfo}" class="card-text"></p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">더보기</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">수정</button>
+                                <button type="button" class="btn-read btn btn-sm btn-outline-secondary">More</button>
                             </div>
-                            <small class="text-muted">9 mins</small>
+                            <small th:text="${post.createDate.toString()}" class="text-muted"></small>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
+
 
 <footer th:replace="/fragments/footer.html :: fragment-footer"></footer>
 

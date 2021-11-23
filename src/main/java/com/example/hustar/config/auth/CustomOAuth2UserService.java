@@ -2,7 +2,7 @@ package com.example.hustar.config.auth;
 
 import com.example.hustar.config.auth.dto.OAuthAttributes;
 import com.example.hustar.config.auth.dto.SessionUser;
-import com.example.hustar.domain.User;
+import com.example.hustar.domain.user.User;
 import com.example.hustar.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

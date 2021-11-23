@@ -1,4 +1,4 @@
-package com.example.hustar.domain;
+package com.example.hustar.domain.post;
 
 import lombok.Getter;
 import lombok.ToString;

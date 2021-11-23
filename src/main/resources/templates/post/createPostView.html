@@ -22,10 +22,10 @@
         <label class="visually-hidden" for="mealType">Choose..</label>
         <select class="form-select" id="mealType" th:name="mealType">
             <option selected>끼니...</option>
-            <option value="morning">아침</option>
-            <option value="lunch">점심</option>
-            <option value="dinner">저녁</option>
-            <option value="snack">간식</option>
+            <option th:value="MORNING">아침</option>
+            <option th:value="LUNCH">점심</option>
+            <option th:value="DINNER">저녁</option>
+            <option th:value="SNACK">간식</option>
         </select>
 
         <label for="content" class="visually-hidden">내용</label>
@@ -35,6 +35,7 @@
     </form>
 
 </div>
+
 
 <footer th:replace="/fragments/footer.html :: fragment-footer"></footer>
 
