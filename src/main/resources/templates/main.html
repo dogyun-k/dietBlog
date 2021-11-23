@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="fragments/header.html :: fragment-header"></div>
+    <div th:replace="/fragments/header.html :: fragment-header"></div>
 </head>
 
 <body th:align="center">
 
-<nav th:replace="fragments/nav.html :: fragment-nav"></nav>
+<nav th:replace="/fragments/nav.html :: fragment-nav"></nav>
 
 <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-6 fw-bold">칼로리를 확인하고 식단을 조절하세요!</h1>
@@ -35,7 +35,7 @@
     <!--    <img class="d-block mx-auto mb-4" src="img/linkedin_banner_image_2.png" alt="" width="70%" height="100%">-->
 </div>
 
-<footer th:replace="fragments/footer.html :: fragment-footer"></footer>
+<footer th:replace="/fragments/footer.html :: fragment-footer"></footer>
 
 </body>
 </html>
