@@ -1,4 +1,4 @@
-<h1 align="middle">DIBLY</h1>
+<h1 align="middle">💪DIBLY🥗</h1>
 <h3 align="middle">헬스 서비스</h3>
 <br/>
 
