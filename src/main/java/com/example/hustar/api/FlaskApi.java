@@ -1,6 +1,8 @@
 package com.example.hustar.api;
 
 import com.example.hustar.domain.post.FlaskResponseDto;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -50,6 +52,7 @@ public class FlaskApi {
 
         // Response 파싱
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
         FlaskResponseDto dto = objectMapper.readValue(response.getBody(), FlaskResponseDto.class);
 
         if (dto.getFoodname().size() == 0){
