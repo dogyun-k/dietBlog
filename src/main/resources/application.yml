@@ -23,11 +23,11 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
-    generate-ddl: false
-    show-sql: false
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     properties:
       hibernate:
         format_sql: true
@@ -38,9 +38,9 @@ spring:
   servlet:
     multipart:
       enabled: true
-      location: C:\Users\kdk12\Desktop\file\
+      location: \home\ec2-user\app\images
       max-file-size: 100MB
       max-request-size: 100MB
 
 file:
-  dir: C:\Users\kdk12\Desktop\file\   # 실제 파일을 저장할 곳
+  dir: \home\ec2-user\app\images\   # 실제 파일을 저장할 곳
