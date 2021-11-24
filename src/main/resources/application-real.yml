@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    include: oauth,real-db
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+session:
+    store-type: jdbc
+
+file:
+  dir: \home\ec2-user\app\images\   # 실제 파일을 저장할 곳
