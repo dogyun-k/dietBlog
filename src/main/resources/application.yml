@@ -27,7 +27,7 @@ spring:
 
     generate-ddl: false
     show-sql: false
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     properties:
       hibernate:
         format_sql: true
