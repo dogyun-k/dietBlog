@@ -12,7 +12,7 @@ public class UploadFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "FILE_ID")
+    @Column(name = "file_id")
     private Long id;
 
     private String uploadFileName;
