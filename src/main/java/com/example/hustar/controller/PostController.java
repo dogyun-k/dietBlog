@@ -33,11 +33,10 @@ public class PostController {
     public String viewAllPost(Model model) {
 
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        Optional<User> user = userService.findByEmail(sessionUser.getEmail());
-        if (user.isPresent()){
-            model.addAttribute("posts", postService.findAllByUser(user.get()));
-            model.addAttribute("userName", user.get().getName());
-        }
+        User user = userService.findByEmail(sessionUser.getEmail()).get();
+
+        model.addAttribute("userName", user.getName());
+        model.addAttribute("posts", postService.findAllByUser(user));
 
         return "post/postsView";
     }
