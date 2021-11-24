@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -48,9 +49,13 @@ public class FlaskApi {
 //        System.out.println("Body Type : " + response.getBody().getClass() + "\n\n");
 
         // Response 파싱
-        FlaskResponseDto dto = new FlaskResponseDto();
         ObjectMapper objectMapper = new ObjectMapper();
-        dto = objectMapper.readValue(response.getBody(), FlaskResponseDto.class);
+        FlaskResponseDto dto = objectMapper.readValue(response.getBody(), FlaskResponseDto.class);
+
+        if (dto.getFoodname().size() == 0){
+            dto.setFoodname(null);
+            dto.setCalorie(null);
+        }
 
         return dto;
     }

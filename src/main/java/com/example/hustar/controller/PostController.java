@@ -64,7 +64,8 @@ public class PostController {
             user = userService.findByEmail(sessionUser.getEmail());
         }
 
-        FlaskResponseDto calorieInfo = flaskApi.requestToFlask(fileService.createStoreFileName(imgFile.getOriginalFilename()), imgFile);
+        String storeFileName = fileService.createStoreFileName(imgFile.getOriginalFilename());
+        FlaskResponseDto calorieInfo = flaskApi.requestToFlask(storeFileName, imgFile);
         UploadFile uploadFile = fileService.storeFile(imgFile);
 
         // 전체 칼로리 계산
