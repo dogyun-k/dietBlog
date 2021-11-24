@@ -55,11 +55,6 @@ public class FlaskApi {
         objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
         FlaskResponseDto dto = objectMapper.readValue(response.getBody(), FlaskResponseDto.class);
 
-        if (dto.getFoodname().size() == 0){
-            dto.setFoodname(null);
-            dto.setCalorie(null);
-        }
-
         return dto;
     }
 

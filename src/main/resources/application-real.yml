@@ -12,9 +12,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+<<<<<<< HEAD
         format_sql: true
 
 session:
+=======
+  session:
+>>>>>>> dda0e35cdeb60d4335432faa77e2c6026e4683da
     store-type: jdbc
 
 file:
