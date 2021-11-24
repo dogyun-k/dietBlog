@@ -39,8 +39,8 @@ public class PostService {
         fileRepository.deleteById(fileId);
     }
 
-    public List<Post> findAllByUser(User user){
-        return postRepository.findAllByUser(user);
-    }
+//    public List<Post> findAllByUser(User user){
+//        return postRepository.findAllByUser(user);
+//    }
 
 }

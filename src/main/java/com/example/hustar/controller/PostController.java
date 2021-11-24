@@ -35,7 +35,8 @@ public class PostController {
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
         Optional<User> user = userService.findByEmail(sessionUser.getEmail());
         if (user.isPresent()){
-            model.addAttribute("posts", postService.findAllByUser(user.get()));
+            model.addAttribute("posts", postService.readAllPost());
+//            model.addAttribute("posts", postService.findAllByUser(user.get()));
             model.addAttribute("userName", user.get().getName());
         }
 
