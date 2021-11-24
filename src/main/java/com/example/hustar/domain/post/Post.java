@@ -14,7 +14,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "POST_ID")
+    @Column(name = "post_id")
     private Long id;
 
     private String title;
@@ -32,11 +32,11 @@ public class Post {
     private Date createDate = new Date();
 
     @OneToOne
-    @JoinColumn(name = "FILE_ID")
+    @JoinColumn(name = "file_id")
     private UploadFile uploadFile;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")       // User_ID 키를 관리할 주인은 POST와 USER중 누가 해야할까?
+    @JoinColumn(name = "user_id")       // User_ID 키를 관리할 주인은 POST와 USER중 누가 해야할까?
     private User user;
 
     protected Post() {
