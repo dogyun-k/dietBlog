@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/layout/header.html :: fragment-header"></div>
+</head>
+
+<body th:align="center">
+
+<nav th:replace="fragments/layout/nav.html :: fragment-nav"></nav>
+
+<section class="py-5 text-start container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+            <input type="hidden" id="board-id" th:value="${board.id}">
+
+            <label for="title" class="visually-hidden">제목</label>
+            <input th:type="text" th:name="title" th:value="${board.title}" class="form-control" id="title" placeholder="제목">
+
+            <label for="content" class="visually-hidden">내용</label>
+            <textarea th:type="text" th:name="content" th:text="${board.content}" class="form-control" id="content" style="height: 500px"></textarea>
+
+            <div class="justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" id="btn-update-board" class="btn btn-sm btn-outline-secondary">수정</button>
+                    <button type="button" id="btn-cancel-board" class="btn btn-sm btn-outline-secondary">뒤로</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer th:replace="fragments/layout/footer.html :: fragment-footer"></footer>
+<script src="/js/app/board.js"></script>
+
+</body>
+</html>

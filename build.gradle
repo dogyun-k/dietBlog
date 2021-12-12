@@ -23,27 +23,28 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
-    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.1'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.1'
 
-    implementation 'org.springframework.boot:spring-boot-starter-security:2.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.6.1'
 
     implementation 'org.springframework.session:spring-session-jdbc:2.6.0'
 
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.6'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
-//    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.1'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.6.1'
 
     implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
+    implementation 'com.h2database:h2:2.0.202'
 
     runtimeOnly 'mysql:mysql-connector-java:8.0.25'
 
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.5.6'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.6.1'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     compileOnly 'org.projectlombok:lombok:1.18.22'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'
 }
 
 test {

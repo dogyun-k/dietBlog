@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/layout/header.html :: fragment-header"></div>
+</head>
+
+<body th:align="center">
+
+<nav th:replace="fragments/layout/nav.html :: fragment-nav"></nav>
+
+<div class="container align-items-center">
+    <div class="py-5 text-center">
+        <h2>글쓰기</h2>
+    </div>
+
+    <form th:action="@{/diet/new}" method="POST" class="row row-cols-lg-auto g-3 align-items-center">
+
+        <label for="title" class="visually-hidden">제목</label>
+        <input th:type="text" th:name="title" class="form-control" id="title" placeholder="제목">
+
+        <label for="content" class="visually-hidden">내용</label>
+        <textarea th:type="text" th:name="content" class="form-control" id="content" style="height: 500px" placeholder="내용"></textarea>
+
+        <button type="button" id="btn-create-board" class="btn btn-outline-success btn-lg">완료</button>
+        <button type="button" id="btn-cancel-board" class="btn btn-lg btn-outline-secondary">뒤로</button>
+    </form>
+
+</div>
+
+
+<footer th:replace="fragments/layout/footer.html :: fragment-footer"></footer>
+<script src="/js/app/board.js"></script>
+
+</body>
+</html>

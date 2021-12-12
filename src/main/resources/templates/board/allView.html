@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/layout/header.html :: fragment-header"></div>
+</head>
+
+<body th:align="center">
+
+<nav th:replace="fragments/layout/nav.html :: fragment-nav"></nav>
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">게시판</h1>
+            <p class="lead text-muted">생각을 자유롭게 나눠보세요.</p>
+            <p>
+                <a th:href="@{/board/new}" class="btn btn-primary my-1">글쓰기</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+
+    <div th:each="board : ${boardList}" class="list-group">
+        <a th:href="|@{/board/}${board.id}|" class="list-group-item list-group-item-action" aria-current="true">
+            <p th:text="${board.id}" class="mb-1"></p>
+            <div class="d-flex w-100 justify-content-between">
+                <h5 th:text="${board.title}" class="mb-1"></h5>
+                <small th:text="${board.createDate.toString()}"></small>
+            </div>
+            <p th:text="${board.content}" class="mb-1"></p>
+        </a>
+    </div>
+
+</div>
+
+<footer th:replace="fragments/layout/footer.html :: fragment-footer"></footer>
+<script src="/js/app/board.js"></script>
+</body>
+</html>

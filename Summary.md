@@ -48,8 +48,8 @@
 - /main : 블로그로 들어갈 수 있는 페이지
 - /login : 로그인을 하는 페이지 (Oauth)
 - /posts : 전체 글 목록을 보는 페이지
-- /posts/post : 글 작성을 하는 페이지
-- /posts/post/{id} : 단일 글 내용 확인
+- /posts/diet : 글 작성을 하는 페이지
+- /posts/diet/{id} : 단일 글 내용 확인
 
 
 **API**
@@ -60,12 +60,12 @@ RESTful API를 설계했습니다.
 - [GET] /main : 메인페이지를 제공하는 URL
 - [GET] /posts : 글 목록을 제공하는 URL
 
-- [GET] /posts/post : 글 작성 페이지를 제공하는 URL
-- [POST] /posts/post : 새 글을 저장하는 URL
+- [GET] /posts/diet : 글 작성 페이지를 제공하는 URL
+- [POST] /posts/diet : 새 글을 저장하는 URL
 
-- [GET] /posts/post/{id} : 단일 글 정보를 제공하는 URL
-- [POST] /posts/post/{id} : 글 수정 요청을 하는 URL
-- [DELETE] /posts/post/{id} : 글 삭제 요청을 하는 URL
+- [GET] /posts/diet/{id} : 단일 글 정보를 제공하는 URL
+- [POST] /posts/diet/{id} : 글 수정 요청을 하는 URL
+- [DELETE] /posts/diet/{id} : 글 삭제 요청을 하는 URL
 
 - [GET] /image/{filename} : filename에 대한 이미지 파일을 제공하는 URL
 
@@ -101,7 +101,7 @@ RESTful API를 설계했습니다.
 -----------------------------------
 - 글 올리기
 
-    ![post](./images/post.png)
+    ![diet](./images/diet.png)
 
 -----------------------------------
 - 세부사항

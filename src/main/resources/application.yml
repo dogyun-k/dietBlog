@@ -4,16 +4,23 @@
 
 spring:
   profiles:
-    include: oauth
+    include: oauth,db     # include하면 application-* 이름의 파일이 포함됨.
   
   session:
     store-type: jdbc
 
+  # PUT, DELETE 메소드를 사용할려면 활성화해주어야 함.
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: on
+
   jpa:
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.H2Dialect
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
   thymeleaf:
     cache: false
@@ -21,9 +28,9 @@ spring:
   servlet:
     multipart:
       enabled: true
-      location: /home/ec2-user/app/images
+      location: C:\Users\kdk12\Desktop\file
       max-file-size: 100MB
       max-request-size: 100MB
 
 file:
-  dir: /home/ec2-user/app/images/   # 실제 파일을 저장할 곳
+  dir: C:\Users\kdk12\Desktop\file\   # 실제 파일을 저장할 곳

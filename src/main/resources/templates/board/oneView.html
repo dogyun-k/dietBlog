@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/layout/header.html :: fragment-header"></div>
+</head>
+
+<body th:align="center">
+
+<nav th:replace="fragments/layout/nav.html :: fragment-nav"></nav>
+
+<section class="py-5 text-start container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+            <input type="hidden" id="board-id" th:value="${board.id}">
+            <p th:text="${board.createDate.toString()}" class="lead fw-light"></p>
+            <p th:text="${board.title}" class="lead text-muted"></p>
+            <h2 th:text="${board.content}" class="font-monospace lead text-muted lh-lg"></h2>
+
+            <div class="justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" id="btn-updateView-board" class="btn btn-sm btn-outline-secondary">수정</button>
+                    <button type="button" id="btn-delete-board" class="btn-delete btn btn-sm btn-outline-secondary">삭제</button>
+                    <button type="button" id="btn-cancel-board" class="btn btn-sm btn-outline-secondary">뒤로</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer th:replace="fragments/layout/footer.html :: fragment-footer"></footer>
+<script src="/js/app/board.js"></script>
+
+</body>
+</html>
