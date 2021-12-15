@@ -24,12 +24,13 @@
 
     <div th:each="board : ${boardList}" class="list-group">
         <a th:href="|@{/board/}${board.id}|" class="list-group-item list-group-item-action" aria-current="true">
-            <p th:text="${board.id}" class="mb-1"></p>
+            <div class="d-flex w-100 justify-content-between">
+                <p th:text="${board.user.name}" class="mb-1"></p>
+            </div>
             <div class="d-flex w-100 justify-content-between">
                 <h5 th:text="${board.title}" class="mb-1"></h5>
                 <small th:text="${board.createDate.toString()}"></small>
             </div>
-            <p th:text="${board.content}" class="mb-1"></p>
         </a>
     </div>
 

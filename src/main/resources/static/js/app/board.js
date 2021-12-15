@@ -66,7 +66,7 @@ let board = {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function (){
-            alert('수정되었습니다.');
+            // alert('수정되었습니다.');
             window.location.href = '/board';
         }).fail(function (error){
             alert(JSON.stringify(error));

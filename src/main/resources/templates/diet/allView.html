@@ -13,6 +13,7 @@
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 th:text="|${userName}님의 일지|" class="fw-light"></h1>
             <p class="lead text-muted">오늘 섭취한 총 칼로리</p>
+            <h2 th:text="|${totalCalorie} Kcal|" class="fw-light"></h2>
             <p>
                 <a th:href="@{/diet/new}" class="btn btn-primary my-1">식단 올리기</a>
             </p>
@@ -38,10 +39,10 @@
 
                     <div class="card-body">
                         <p th:text="${diet.foods}" class="card-text"></p>
-                        <p th:text="${diet.calorieInfo}" class="card-text"></p>
+                        <p th:text="|${diet.calorieInfo} Kcal|" class="card-text"></p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn-read btn btn-sm btn-outline-secondary">More</button>
+                                <button type="button" class="btn-read btn btn-sm btn-outline-secondary">더보기</button>
                             </div>
                             <small th:text="${diet.createDate.toString()}" class="text-muted"></small>
                         </div>
@@ -55,6 +56,6 @@
 
 
 <footer th:replace="fragments/layout/footer.html :: fragment-footer"></footer>
-<script src="/js/app/index.js"></script>
+<script src="/js/app/diet.js"></script>
 </body>
 </html>

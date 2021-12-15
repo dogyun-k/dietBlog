@@ -1,6 +1,7 @@
 package com.knu.dibly.domain.diet;
 
 import com.knu.dibly.domain.user.User;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -39,6 +40,7 @@ public class Diet {
     @JoinColumn(name = "user_id")       // User_ID 키를 관리할 주인은 POST와 USER중 누가 해야할까?
     private User user;
 
+    @Builder
     public Diet(String mealType, String content, String foods, Integer calorieInfo, UploadFile uploadFile, User user) {
         this.mealType = mealType;
         this.content = content;

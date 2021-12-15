@@ -6,9 +6,11 @@ import com.knu.dibly.domain.user.User;
 import com.knu.dibly.repository.DietRepository;
 import com.knu.dibly.repository.UploadFileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,7 +29,7 @@ public class DietService {
     }
 
     public List<Diet> readAllDiet() {
-        return dietRepository.findAll();
+        return dietRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @Transactional
@@ -43,7 +45,20 @@ public class DietService {
     }
 
     public List<Diet> findAllByUser(User user) {
-        return dietRepository.findAllByUser(user);
+        return dietRepository.findAllByUserOrderByIdDesc(user);
+    }
+
+    public List<Diet> findAllByUserAndCreateDate(User user, Date createDate) {
+        return dietRepository.findAllByUserAndCreateDate(user, createDate);
+    }
+
+    public Integer totalTodayCalorieByUser(User user, Date today) {
+        List<Diet> dietList = this.findAllByUserAndCreateDate(user, today);
+        Integer totalCalorie = 0;
+        for (Diet diet : dietList) {
+            totalCalorie += diet.getCalorieInfo();
+        }
+        return totalCalorie;
     }
 
 }

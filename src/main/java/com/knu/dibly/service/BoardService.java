@@ -3,8 +3,10 @@ package com.knu.dibly.service;
 import com.knu.dibly.domain.board.Board;
 import com.knu.dibly.domain.board.dto.BoardCreateRequestDto;
 import com.knu.dibly.domain.board.dto.BoardUpdateRequestDto;
+import com.knu.dibly.domain.user.User;
 import com.knu.dibly.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,8 +18,9 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public void create(BoardCreateRequestDto entity) {
+    public void create(User user, BoardCreateRequestDto entity) {
         Board board = Board.builder()
+                .user(user)
                 .title(entity.getTitle())
                 .content(entity.getContent())
                 .build();
@@ -29,7 +32,7 @@ public class BoardService {
     }
 
     public List<Board> readAll() {
-        return boardRepository.findAll();
+        return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @Transactional

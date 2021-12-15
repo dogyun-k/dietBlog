@@ -12,19 +12,19 @@ import java.util.List;
 @Data
 public class FlaskResponseDto {
 
-    private List<String> foodname;
+    private List<String> name;
 
     private List<Integer> calorie;
 
-    public FlaskResponseDto(List<String> foodname, List<Integer> calorie){
-        this.foodname = foodname;
+    public FlaskResponseDto(List<String> name, List<Integer> calorie){
+        this.name = name;
         this.calorie = calorie;
     }
 
     @Override
     public String toString(){
         StringBuilder result = new StringBuilder();
-        for(String i : this.foodname){
+        for(String i : this.name){
             result.append(", ").append(i);
         }
         return result.toString();

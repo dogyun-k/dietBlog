@@ -4,9 +4,9 @@ import com.knu.dibly.api.FlaskApi;
 import com.knu.dibly.api.dto.FlaskResponseDto;
 import com.knu.dibly.config.auth.dto.SessionUser;
 import com.knu.dibly.domain.diet.Diet;
+import com.knu.dibly.domain.diet.UploadFile;
 import com.knu.dibly.domain.diet.dto.DietDeleteRequestDto;
 import com.knu.dibly.domain.diet.dto.DietUpdateRequestDto;
-import com.knu.dibly.domain.diet.UploadFile;
 import com.knu.dibly.domain.user.User;
 import com.knu.dibly.service.DietService;
 import com.knu.dibly.service.UploadFileService;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -43,6 +44,7 @@ public class DietController {
 
         model.addAttribute("userName", user.get().getName());
         model.addAttribute("diets", dietService.findAllByUser(user.get()));
+        model.addAttribute("totalCalorie", dietService.totalTodayCalorieByUser(user.get(), new Date()));
 
         return "diet/allView";
     }
@@ -68,8 +70,7 @@ public class DietController {
 
         if (sessionUser != null) {
             user = userService.findByEmail(sessionUser.getEmail());
-        }
-        else{
+        } else {
             return "redirect:/login";
         }
 
@@ -84,7 +85,7 @@ public class DietController {
         }
 
         if (user.isPresent()) {
-            Diet diet = new Diet(mealType, content, calorieInfo.getFoodname().toString(), totalCalorie, uploadFile, user.get());
+            Diet diet = new Diet(mealType, content, calorieInfo.getName().toString(), totalCalorie, uploadFile, user.get());
             dietService.createDiet(diet);
         }
 

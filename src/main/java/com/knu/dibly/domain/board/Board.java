@@ -31,7 +31,8 @@ public class Board {
     private User user;
 
     @Builder
-    public Board(String title, String content) {
+    public Board(User user, String title, String content) {
+        this.user = user;
         this.title = title;
         this.content = content;
     }

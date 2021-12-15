@@ -26,7 +26,7 @@ public class FlaskApi {
     }
 
     public FlaskResponseDto requestToFlask(String fileName, MultipartFile file) throws Exception {
-        String url = "http://localhost:5000/calorie";
+        String url = "http://localhost:5000/calorie/binary";
         RestTemplate restTemplate = new RestTemplate();
 
         // Header set
